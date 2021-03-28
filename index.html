@@ -79,7 +79,7 @@
                 return '<p style="text-align:center; font-weight:bold;margin:0; line-height:2">\nReferences\n</p>'
               }
               if(str !== 'References' && isAfterReferences){
-                return '<p style="padding-left:2.5em; text-indent:-1.5em;margin:0; line-height:2">\n' + str + '\n</p>'
+                return '<p style="padding-left:2.5em; text-indent:-2.5em;margin:0; line-height:2">\n' + str + '\n</p>'
               }
             }).filter(function(t){ return t !== ''; }).join('\n')
             return  containerString + '\n' 
