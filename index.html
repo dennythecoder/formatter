@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Liberty Post Formatter</title>
+    <style>
+      label{
+        font-weight:bold;
+        background-color:#17d;
+        color:white;
+        padding:4px 10px;
+        border-radius:20px;
+      }
+    </style>
+  </head>
+  <body>
+
+    <h1>Unofficial Liberty Post Formatter</h1>
+    <div id="app">
+      <div class="row">
+          <div class="col-4">
+            <div class="form-group">
+              <label for="exampleFormControlTextarea1">Enter your text here.</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="20" v-model="myInput"></textarea>
+            </div>
+        </div>
+        <div class="col-4">
+          <label for="">Preview</label>
+          <div v-html="myHTML">
+      
+          </div>
+        </div>
+        <div class="col-4">
+        <label for="exampleFormControlTextarea2">Your output HTML is here</label>
+              <textarea class="form-control" id="exampleFormControlTextarea2" rows="20">
+          {{myHTML}}
+          </textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+
+    <script>
+      var containerString = ' <div style="font-family:\'Times New Roman\'; font-size:14pt; line-height: 2;">';
+      
+
+      new Vue({
+        el:'#app',
+        data:{
+          myInput:''
+        },
+        computed:{
+          myHTML:function(){
+            var myInput = this.myInput;
+            var isAfterReferences = false;
+            var innerHTML = myInput.split('\n').map(function(str, idx){
+              if(!str.length) return '';
+              if(str !== 'References' && !isAfterReferences){
+                if(idx === 0 && str.slice(-1) === ','){
+                  return '<p style="margin:0">\n' + str + '</p>'
+                }else{
+                return '<p style="text-indent:1.5em;margin:0">\n' + str + '\n</p>';}
+              }
+              if(str === 'References'){
+                isAfterReferences = true;
+                return '<p style="text-align:center; font-weight:bold;margin:0; line-height:2">\nReferences\n</p>'
+              }
+              if(str !== 'References' && isAfterReferences){
+                return '<p style="padding-left:1.5em; text-indent:-1.5em;margin:0; line-height:2">\n' + str + '\n</p>'
+              }
+            }).join('\n')
+            return  containerString + '\n' 
+                    + innerHTML
+                    + '\n</div>'
+          }
+        }
+      });
+      </script>
+
+</body>
+</html>
