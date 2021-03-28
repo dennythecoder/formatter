@@ -81,7 +81,7 @@
               if(str !== 'References' && isAfterReferences){
                 return '<p style="padding-left:2.5em; text-indent:-1.5em;margin:0; line-height:2">\n' + str + '\n</p>'
               }
-            }).join('\n')
+            }).filter(function(t){ return t !== ''; }).join('\n')
             return  containerString + '\n' 
                     + innerHTML
                     + '\n</div>'
