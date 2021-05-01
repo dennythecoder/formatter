@@ -94,7 +94,7 @@
                 }
                 else{
                   if(str.indexOf('#') === 0){
-                    return '<p style="text-align:center;font-weight:bold;margin:0">\n' + str + '\n</p>';
+                    return '<p style="text-align:center;font-weight:bold;margin:0">\n' + str.substring(1) + '\n</p>';
                   } else {
                     return '<p style="text-indent:2.5em;margin:0">\n' + str + '\n</p>';
                   }
