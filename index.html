@@ -91,8 +91,15 @@
               if(str !== 'References' && !isAfterReferences){
                 if(idx === 0 && str.slice(-1) === ','){
                   return '<p style="margin:0">\n' + str + '</p>'
-                }else{
-                return '<p style="text-indent:2.5em;margin:0">\n' + str + '\n</p>';}
+                }
+                else{
+                  if(str.indexOf('#') === 0){
+                    return '<p style="text-align:center;font-weight:bold;margin:0">\n' + str + '\n</p>';
+                  } else {
+                    return '<p style="text-indent:2.5em;margin:0">\n' + str + '\n</p>';
+                  }
+                  
+                }
               }
               if(str === 'References'){
                 isAfterReferences = true;
