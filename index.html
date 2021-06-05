@@ -97,7 +97,16 @@
                 }
                 else{
                   if(str.indexOf('#') === 0){
-                    return '<p style="text-align:center;font-weight:bold;margin:0">\n' + str.substring(1) + '\n</p>';
+                    if(str.indexOf('##') === 0){
+                      if(str.indexOf('###') === 0){
+                        return '<p style="text-align:left;font-weight:bold;margin:0;font-style:italic;">\n' + str.substring(3) + '\n</p>';
+                      }
+                      else{
+                        return '<p style="text-align:left;font-weight:bold;margin:0">\n' + str.substring(2) + '\n</p>';
+                      }
+                    } else {
+                      return '<p style="text-align:center;font-weight:bold;margin:0">\n' + str.substring(1) + '\n</p>';
+                    }
                   } else {
                     return '<p style="text-indent:2.5em;margin:0">\n' + str + '\n</p>';
                   }
