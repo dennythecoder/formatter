@@ -93,9 +93,7 @@
               if(!str.length) return '';
               if(str !== 'References' && !isAfterReferences){
                 if(idx === 0 && str.slice(-1) === ','){
-                  var b = str.replace(/\*(.*)\*/g, function(a, b){
-                                     return '<b>' + b + '</b>';
-                                    });
+                  var b = str.replace(/\*(.*)\*/g, '<b>$1</b>');
                   return '<p style="margin:0">\n' + b + '</p>'
                 }
                 else{
