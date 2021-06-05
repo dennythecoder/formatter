@@ -93,7 +93,10 @@
               if(!str.length) return '';
               if(str !== 'References' && !isAfterReferences){
                 if(idx === 0 && str.slice(-1) === ','){
-                  return '<p style="margin:0">\n' + str + '</p>'
+                  var b = str.replace(/\*(.*)\/g, function(a, b){
+                                     return '<b>' + b + '</b>';
+                                    });
+                  return '<p style="margin:0">\n' + b + '</p>'
                 }
                 else{
                   if(str.indexOf('#') === 0){
