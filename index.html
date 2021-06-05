@@ -92,7 +92,7 @@
             var innerHTML = myInput.split('\n').map(function(str, idx){
               if(!str.length) return '';
               if(str !== 'References' && !isAfterReferences){
-                if(idx === 0 && str.slice(-1) === ','){
+                if(idx === 0 && (str.slice(-1) === ',' || str.slice(-2) === ', '){
                   
                   return '<p style="margin:0">\n' + str + '</p>'
                 }
@@ -115,7 +115,7 @@
                   
                 }
               }
-              if(str === 'References'){
+              if(str === 'References' || str === 'References '){
                 isAfterReferences = true;
                 return '<p style="text-align:center; font-weight:bold;margin:0; line-height:2">\nReferences\n</p>'
               }
